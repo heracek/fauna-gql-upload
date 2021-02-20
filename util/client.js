@@ -1,11 +1,8 @@
 const faunadb = require("faunadb");
 const fetch = require("node-fetch");
-const secret = require("./secret");
+const { faunaConfig } = require("./secret");
 require("dotenv").config();
 
-const client = new faunadb.Client({
-	secret,
-	fetch
-});
+const client = new faunadb.Client(Object.assign({ fetch }, faunaConfig));
 
 module.exports = client;
